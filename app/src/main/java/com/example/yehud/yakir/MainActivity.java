@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button button;
     TextView textView;
-
+    Tfila tfila;
     private ProgressDialog mProgressDialog;
 
 
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(false);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setTitle("מתחבר לשרת...");
+        mProgressDialog.setMessage("טוען זמני תפילות");
 
 
 
@@ -65,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
                 Elements table = doc.select("table[class=waffle]");
 
                 Iterator<Element> iterator = table.select("tr").iterator();
+                int iter =1;
                 while(iterator.hasNext()){
+                    iter++;
                     String line = iterator.next().text();
                     words = words +line +"\n";
                     Log.i("JSOUP",line);
@@ -82,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             textView.setText(words);
+            tfila = new Tfila((words));
             mProgressDialog.dismiss();
 
 
