@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yehud.yakir.TfilaActivity">
+
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/minyanTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="שערי שמים"
+            android:textSize="36sp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="228dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/weekdayTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ימי חול"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/week_sharitTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="שעות" />
+
+                <TextView
+                    android:id="@+id/week_sharitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="שחרית" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/week_MinhaTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="שעות" />
+
+                <TextView
+                    android:id="@+id/week_MinhaTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="מנחה" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/week_ArvitTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="שעות" />
+
+                <TextView
+                    android:id="@+id/week_ArvitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="ערבית" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="232dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/saturdayTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="שבת"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/saturday_sharitTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="שעות" />
+
+                <TextView
+                    android:id="@+id/saturday_sharitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="שחרית" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/saturday_MinhaTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="שעות" />
+
+                <TextView
+                    android:id="@+id/saturday_MinhaTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="מנחה" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/saturday_ArvitTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="שעות" />
+
+                <TextView
+                    android:id="@+id/saturday_ArvitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="ערבית" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

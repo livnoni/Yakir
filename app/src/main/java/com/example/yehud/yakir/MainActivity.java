@@ -1,6 +1,7 @@
 package com.example.yehud.yakir;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.provider.DocumentsContract;
 import android.support.v7.app.AppCompatActivity;
@@ -26,22 +27,19 @@ import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
-    TextView textView;
+    Button goToTfilaCtivity;
     private ProgressDialog mProgressDialog;
 
 
     String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
     DataObject dataObject;
-    Vector<Minyan> minyansVector;
+    Vector<staticClass.Minyan> minyansVector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
-        textView = (TextView) findViewById(R.id.textView);
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(false);
@@ -49,16 +47,19 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setTitle("מתחבר לשרת...");
         mProgressDialog.setMessage("טוען זמני תפילות");
 
-        minyansVector = new Vector<Minyan>();
+        minyansVector = new Vector<staticClass.Minyan>();
         dataObject = new DataObject();
         new grabData().execute();
 
-        button.setOnClickListener(new View.OnClickListener() {
+        goToTfilaCtivity = (Button) findViewById(R.id.TfilaBtn);
+        goToTfilaCtivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new grabData().execute();
+                startActivity(new Intent(MainActivity.this, TfilaActivity.class));
             }
         });
+
+
 
     }
 
@@ -134,75 +135,75 @@ public class MainActivity extends AppCompatActivity {
             for(int i=0; i<minyanArrayList.size(); i++)
             {
                 String tempMinyanName = minyanArrayList.get(i)[1][0];
-                TfilaTime tempShaharit = new TfilaTime(minyanArrayList.get(i)[4]);
-                TfilaTime tempMinha = new TfilaTime(minyanArrayList.get(i)[5]);
-                TfilaTime tempArvit = new TfilaTime(minyanArrayList.get(i)[6]);
-                Tfila tempWeekday = new Tfila(tempShaharit, tempMinha, tempArvit);
+                staticClass.TfilaTime tempShaharit = new staticClass.TfilaTime(minyanArrayList.get(i)[4]);
+                staticClass.TfilaTime tempMinha = new staticClass.TfilaTime(minyanArrayList.get(i)[5]);
+                staticClass.TfilaTime tempArvit = new staticClass.TfilaTime(minyanArrayList.get(i)[6]);
+                staticClass.Tfila tempWeekday = new staticClass.Tfila(tempShaharit, tempMinha, tempArvit);
 
-                TfilaTime tempShaharit2 = new TfilaTime(minyanArrayList.get(i)[9]);
-                TfilaTime tempMinha2 = new TfilaTime(minyanArrayList.get(i)[10]);
-                TfilaTime tempArvit2 = new TfilaTime(minyanArrayList.get(i)[11]);
-                Tfila tempsaturday = new Tfila(tempShaharit2, tempMinha2, tempArvit2);
-                Minyan tempMinyan = new Minyan(tempMinyanName , tempWeekday , tempsaturday);
+                staticClass.TfilaTime tempShaharit2 = new staticClass.TfilaTime(minyanArrayList.get(i)[9]);
+                staticClass.TfilaTime tempMinha2 = new staticClass.TfilaTime(minyanArrayList.get(i)[10]);
+                staticClass.TfilaTime tempArvit2 = new staticClass.TfilaTime(minyanArrayList.get(i)[11]);
+                staticClass.Tfila tempsaturday = new staticClass.Tfila(tempShaharit2, tempMinha2, tempArvit2);
+                staticClass.Minyan tempMinyan = new staticClass.Minyan(tempMinyanName , tempWeekday , tempsaturday);
 
                 minyansVector.add(tempMinyan);
             }
         }
     }
 
-    public class Minyan
-    {
-        String name;
-        Tfila weekday,saturday;
-
-        public Minyan(String name, Tfila weekday , Tfila saturday)
-        {
-            this.name = name;
-            this.weekday = weekday;
-            this.saturday = saturday;
-        }
-        public String toString()
-        {
-            return "["+name+" -> weekday="+weekday.toString()+" , saturday="+saturday.toString()+"]";
-        }
-
-    }
-    public class Tfila
-    {
-        TfilaTime shaharit,minha,arvit;
-
-        public Tfila(TfilaTime shaharit, TfilaTime minha, TfilaTime arvit)
-        {
-            this.shaharit = shaharit;
-            this.minha = minha;
-            this.arvit = arvit;
-        }
-        public String toString()
-        {
-            return "[shaharit="+shaharit.toString()+"],["+"minha="+minha.toString()+"],["+"arvit="+arvit.toString()+"]";
-        }
-
-    }
-    public class TfilaTime
-    {
-        Vector<String> timesVector;
-
-        public TfilaTime(String [] data)
-        {
-            timesVector = new Vector<String>();
-            for(int i = data.length-1; i>=0; i--)
-            {
-                if(data[i]!=null && data[i]!="" && data[i]!=" ")
-                {
-                    timesVector.add(data[i]);
-                }
-            }
-        }
-        public String toString()
-        {
-            return timesVector.toString();
-        }
-    }
+//    public class Minyan
+//    {
+//        String name;
+//        Tfila weekday,saturday;
+//
+//        public Minyan(String name, Tfila weekday , Tfila saturday)
+//        {
+//            this.name = name;
+//            this.weekday = weekday;
+//            this.saturday = saturday;
+//        }
+//        public String toString()
+//        {
+//            return "["+name+" -> weekday="+weekday.toString()+" , saturday="+saturday.toString()+"]";
+//        }
+//
+//    }
+//    public class Tfila
+//    {
+//        TfilaTime shaharit,minha,arvit;
+//
+//        public Tfila(TfilaTime shaharit, TfilaTime minha, TfilaTime arvit)
+//        {
+//            this.shaharit = shaharit;
+//            this.minha = minha;
+//            this.arvit = arvit;
+//        }
+//        public String toString()
+//        {
+//            return "[shaharit="+shaharit.toString()+"],["+"minha="+minha.toString()+"],["+"arvit="+arvit.toString()+"]";
+//        }
+//
+//    }
+//    public class TfilaTime
+//    {
+//        Vector<String> timesVector;
+//
+//        public TfilaTime(String [] data)
+//        {
+//            timesVector = new Vector<String>();
+//            for(int i = data.length-1; i>=0; i--)
+//            {
+//                if(data[i]!=null && data[i]!="" && data[i]!=" ")
+//                {
+//                    timesVector.add(data[i]);
+//                }
+//            }
+//        }
+//        public String toString()
+//        {
+//            return timesVector.toString();
+//        }
+//    }
     public void printMinyansVectorData()
     {
         if(minyansVector==null)
