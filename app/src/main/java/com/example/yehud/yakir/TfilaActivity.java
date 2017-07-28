@@ -149,9 +149,9 @@ public class TfilaActivity extends AppCompatActivity
                 //if left to right sweep event on screen
                 if (x2 - x1 > swipeSensitivity)
                 {
-                    if(currentMinyanIndex<numOfMinayans-1)
+                    if(currentMinyanIndex>0)
                     {
-                        currentMinyanIndex++;
+                        currentMinyanIndex--;
                         initializelUI();
                         initializelRadioButtons();
                     }
@@ -161,9 +161,9 @@ public class TfilaActivity extends AppCompatActivity
                 // if right to left sweep event on screen
                 if (x1 - x2 > swipeSensitivity)
                 {
-                    if(currentMinyanIndex>0)
+                    if(currentMinyanIndex<numOfMinayans-1)
                     {
-                        currentMinyanIndex--;
+                        currentMinyanIndex++;
                         initializelUI();
                         initializelRadioButtons();
                     }
