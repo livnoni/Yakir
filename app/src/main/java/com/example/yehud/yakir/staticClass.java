@@ -1,5 +1,7 @@
 package com.example.yehud.yakir;
 
+import java.util.Collections;
+import java.util.Stack;
 import java.util.Vector;
 
 /**
@@ -23,6 +25,7 @@ public class staticClass
         {
             return "["+name+" -> weekday="+weekday.toString()+" , saturday="+saturday.toString()+"]";
         }
+
 
     }
     public static class Tfila
@@ -59,6 +62,15 @@ public class staticClass
         public String toString()
         {
             return timesVector.toString();
+        }
+        public String [] getTimes()
+        {
+            String [] time = new String[timesVector.size()-1];
+            for (int i=0; i<time.length; i++)
+            {
+                time[i] = timesVector.get(i+1);
+            }
+            return time;
         }
     }
 }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
     DataObject dataObject;
-    Vector<staticClass.Minyan> minyansVector;
+    public static Vector<staticClass.Minyan> minyansVector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
