@@ -21,13 +21,13 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Queue;
+
 import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
     Button goToTfilaCtivity;
+    TextView textView;
     private ProgressDialog mProgressDialog;
 
 
