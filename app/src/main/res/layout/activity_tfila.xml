@@ -24,24 +24,24 @@
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        >
+        tools:layout_constraintTop_creator="1">
 
         <TextView
             android:id="@+id/minyanTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="שם מניין"
-            android:textSize="36sp"
             android:gravity="center"
+            android:text="שם מניין"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="36sp"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="179dp"
-            android:orientation="vertical"
-            android:background="@drawable/customborder">
+            android:background="@drawable/customborder"
+            android:orientation="vertical">
 
 
             <TextView
@@ -49,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ימי חול"
+                android:textColor="@color/colorAccent"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -61,6 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="שעות" />
 
                 <TextView
@@ -83,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="שעות" />
 
                 <TextView
@@ -105,6 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="שעות" />
 
                 <TextView
@@ -122,16 +126,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="179dp"
-            android:orientation="vertical"
+            android:layout_marginTop="10dp"
             android:background="@drawable/customborder"
-            android:layout_marginTop="10dp">
+            android:orientation="vertical">
 
 
-        <TextView
+            <TextView
                 android:id="@+id/saturdayTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="שבת"
+                android:textColor="@color/colorAccent"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -144,6 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="שעות" />
 
                 <TextView
@@ -166,6 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="שעות" />
 
                 <TextView
@@ -188,6 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="שעות" />
 
                 <TextView
@@ -210,6 +218,23 @@
             android:orientation="horizontal">
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            >
+
+            <TextView
+                android:id="@+id/creditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:text="Powered by Yehuda Livnoni ©" />
         </LinearLayout>
 
 

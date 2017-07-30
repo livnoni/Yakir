@@ -1,19 +1,15 @@
 package com.example.yehud.yakir;
 
-import android.support.v7.app.ActionBar;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Arrays;
 
@@ -81,14 +77,30 @@ public class TfilaActivity extends AppCompatActivity
 
         minyanTitleTV.setText(MainActivity.minyansVector.get(currentMinyanIndex).name);
 
-        week_sharitTimesTV.setText(Arrays.toString(MainActivity.minyansVector.get(currentMinyanIndex).weekday.shaharit.getTimes()));
-        week_MinhaTimesTV.setText(Arrays.toString(MainActivity.minyansVector.get(currentMinyanIndex).weekday.minha.getTimes()));
-        week_ArvitTimesTV.setText(Arrays.toString(MainActivity.minyansVector.get(currentMinyanIndex).weekday.arvit.getTimes()));
+        setText(week_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.shaharit.getTimes());
+        setText(week_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.minha.getTimes());
+        setText(week_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.arvit.getTimes());
 
+        setText(saturday_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
+        setText(saturday_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
+        setText(saturday_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
 
-        saturday_sharitTimesTV.setText(Arrays.toString(MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes()));
-        saturday_MinhaTimesTV.setText(Arrays.toString(MainActivity.minyansVector.get(currentMinyanIndex).saturday.minha.getTimes()));
-        saturday_ArvitTimesTV.setText(Arrays.toString(MainActivity.minyansVector.get(currentMinyanIndex).saturday.arvit.getTimes()));
+    }
+
+    public void setText(TextView textView, String [] times)
+    {
+        if(times.length==0)
+        {
+            textView.setText("אין מניין");
+            textView.setTextColor(Color.RED);
+        }
+        else
+        {
+            textView.setText(Arrays.toString(times));
+            textView.setTextColor(Color.BLACK);
+
+        }
+
     }
 
     public void initializelRadioButtons()

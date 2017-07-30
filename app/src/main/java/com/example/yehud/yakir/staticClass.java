@@ -1,6 +1,9 @@
 package com.example.yehud.yakir;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -25,6 +28,64 @@ public class staticClass
         {
             return "["+name+" -> weekday="+weekday.toString()+" , saturday="+saturday.toString()+"]";
         }
+        /*
+        Check the neareset minayns and return str [] that present it.
+        String [] = 3 elements-> 1) name 2) kind 3)hour
+        * */
+        public String [] getNearestMinyans(String currentDate) throws ParseException {
+            String [] closestMinayan = new String[3];
+            Long difference = new Long(Long.MAX_VALUE);
+
+            for(int i=0; i<weekday.shaharit.getTimes().length; i++)
+            {
+                Long tempDifference = diffrentDate(currentDate, weekday.shaharit.getTimes()[i]);
+                if(tempDifference >=0 && tempDifference<difference)
+                {
+                    difference = tempDifference;
+                    closestMinayan[0] = name;
+                    closestMinayan[1] = "שחרית";
+                    closestMinayan[2] = weekday.shaharit.getTimes()[i];
+                }
+            }
+            for(int i=0; i<weekday.minha.getTimes().length; i++)
+            {
+                Long tempDifference = diffrentDate(currentDate, weekday.minha.getTimes()[i]);
+                if(tempDifference >=0 && tempDifference<difference)
+                {
+                    difference = tempDifference;
+                    closestMinayan[0] = name;
+                    closestMinayan[1] = "מנחה";
+                    closestMinayan[2] = weekday.minha.getTimes()[i];
+                }
+            }for(int i=0; i<weekday.arvit.getTimes().length; i++)
+            {
+                Long tempDifference = diffrentDate(currentDate, weekday.arvit.getTimes()[i]);
+                if(tempDifference >=0 && tempDifference<difference)
+                {
+                    difference = tempDifference;
+                    closestMinayan[0] = name;
+                    closestMinayan[1] = "ערבית";
+                    closestMinayan[2] = weekday.arvit.getTimes()[i];
+                }
+            }
+            if(closestMinayan[0]==null)
+            {
+                return null;
+            }
+
+            return closestMinayan;
+
+        }
+        public long diffrentDate(String currentDate, String newTime) throws ParseException {
+//            String time1 = "16:00";
+//            String time2 = "19:00";
+
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            Date date1 = format.parse(newTime);
+            Date date2 = format.parse(currentDate);
+            long difference = date1.getTime() - date2.getTime();
+            return  difference;
+        }
 
 
     }
@@ -42,6 +103,7 @@ public class staticClass
         {
             return "[shaharit="+shaharit.toString()+"],["+"minha="+minha.toString()+"],["+"arvit="+arvit.toString()+"]";
         }
+
 
     }
     public static class TfilaTime
