@@ -33,6 +33,10 @@ public class TfilaActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tfila);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         numOfMinayans = MainActivity.minyansVector.size();
         currentMinyanIndex =0;
         radioButtons = new RadioButton[numOfMinayans];

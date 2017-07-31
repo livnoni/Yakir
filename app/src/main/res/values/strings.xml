@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Yakir</string>
+    <string name="app_name">זמני תפילות</string>
+    <string name="copyright">Version 1.0 Powered by Yehuda Livnoni ©</string>
 </resources>
