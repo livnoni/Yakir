@@ -1,14 +1,25 @@
 package com.example.yehud.yakir;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -33,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
+    String docUrl = "https://docs.google.com/document/d/1SjlZiydYFpwctaTzcuVGx3C1tVT3DqFX-AOQh4vhHiw/pub";
     DataObject dataObject;
     public static Vector<staticClass.Minyan> minyansVector;
 
@@ -40,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         goToTfilaCtivity = (Button) findViewById(R.id.TfilaBtn);
         goToTfilaCtivity.setBackgroundColor(Color.RED);
@@ -66,11 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, TfilaActivity.class));
             }
         });
-
-
-
     }
-
 
     public class grabData extends AsyncTask<Void,Void,Void>{
         String[][] trtd;
@@ -91,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     dataObject.addMinyan(trtd);
                 }
+
                 Log.d("grabData","FINISH------------------------------------------");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -112,11 +126,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
-
-
-
-
         }
 
         @Override
@@ -201,6 +210,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ClosestDate=",closestDate[0]+","+closestDate[1]+","+closestDate[2]);
             }
         }
+        if(closestMinyansTV.getText()=="")
+        {
+            closestMinyansTV.setTextColor(Color.RED);
+            closestMinyansTV.append("אין מניינים בזמן הקרוב");
+        }
     }
 
 
@@ -217,7 +231,42 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        menu.add(Menu.NONE,0,Menu.NONE,"אודות");
+        menu.add(Menu.NONE,1,Menu.NONE,"שלח פידבק");
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem)
+    {
+        switch (menuItem.getItemId())
+        {
+            case 0:
+                AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setIcon(R.drawable.ic_info_black_24dp);
+                alertDialog.setTitle("אודות");
+                alertDialog.setMessage("אפליקציית יקיר"+"\n"+"מציגה מידע עדכני אודות זמני תפילות"+"\n"+"נכונות המידע בכפוף לעדכוני הגבאים"+"\n\n"+getString(R.string.copyright));
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                break;
+            case 1:
+                Intent Email = new Intent(Intent.ACTION_SEND);
+                Email.setType("text/email");
+                Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "yehuda.livnoni@gmail.com" });
+                Email.putExtra(Intent.EXTRA_SUBJECT, "פידבק לאפליקציית יקיר");
+                Email.putExtra(Intent.EXTRA_TEXT, "היי, רציתי להגיד ש..." + "");
+                startActivity(Intent.createChooser(Email, "Send Feedback:"));
+                break;
+        }
+        return super.onOptionsItemSelected(menuItem);
     }
 }
