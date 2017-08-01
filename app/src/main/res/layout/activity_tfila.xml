@@ -215,26 +215,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp">
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/creditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/red"
-                android:layout_marginTop="40dp"
-                android:text="@string/copyright" />
+                android:text="@string/copyright"
+                android:textColor="@color/red" />
         </LinearLayout>
 
 

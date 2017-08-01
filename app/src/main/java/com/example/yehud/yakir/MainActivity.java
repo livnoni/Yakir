@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setIcon(R.drawable.ic_info_black_24dp);
                 alertDialog.setTitle("אודות");
-                alertDialog.setMessage("אפליקציית יקיר"+"\n"+"מציגה מידע עדכני אודות זמני תפילות"+"\n"+"נכונות המידע בכפוף לעדכוני הגבאים"+"\n\n"+getString(R.string.copyright));
+                alertDialog.setMessage("אפליקציית יקיר"+"\n"+"מציגה מידע עדכני אודות זמני תפילות"+"\n"+"נכונות המידע בכפוף לעדכוני הגבאים"+"\n\n\n"+getString(R.string.copyright));
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

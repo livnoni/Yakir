@@ -40,6 +40,7 @@ public class TfilaActivity extends AppCompatActivity
         numOfMinayans = MainActivity.minyansVector.size();
         currentMinyanIndex =0;
         radioButtons = new RadioButton[numOfMinayans];
+
         LinearLayoutForBtns = (LinearLayout) findViewById(R.id.LinearLayoutForBtns);
 
 

@@ -33,13 +33,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ברוך הבא"
+            android:textColor="@color/navy"
             android:textSize="30sp" />
 
         <Button
             android:id="@+id/TfilaBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="זמני תפילות" />
+            android:text="זמני תפילות"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -64,6 +69,37 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/purple"
                 android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@drawable/customborder"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/updateTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="הודעות ועדכונים"
+                android:layout_gravity="center"
+                android:textColor="@color/maroon"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/updateMsgTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple"
+                android:scrollbars = "vertical"
+                android:textSize="20sp"
+                />
+
+
 
         </LinearLayout>
 
