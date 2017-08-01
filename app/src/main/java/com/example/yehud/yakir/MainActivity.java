@@ -1,25 +1,35 @@
 package com.example.yehud.yakir;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
@@ -39,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
     Button goToTfilaCtivity;
     private ProgressDialog mProgressDialog;
-    TextView welcomeView;
-    TextView closestMinyansTV;
+    TextView welcomeView ,closestMinyansTV, updateMsgTV;
 
 
     String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
     String docUrl = "https://docs.google.com/document/d/1SjlZiydYFpwctaTzcuVGx3C1tVT3DqFX-AOQh4vhHiw/pub";
     DataObject dataObject;
+    String updateMsg ="";
     public static Vector<staticClass.Minyan> minyansVector;
 
     @Override
@@ -62,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         welcomeView = (TextView) findViewById(R.id.welcomeView);
         closestMinyansTV = (TextView) findViewById(R.id.closestMinyansTV);
-
+        updateMsgTV = (TextView) findViewById(R.id.updateMsgTV);
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(false);
@@ -74,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         minyansVector = new Vector<staticClass.Minyan>();
         dataObject = new DataObject();
         new grabData().execute();
-
 
         goToTfilaCtivity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +115,19 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("grabData","FINISH------------------------------------------");
 
+
+                doc = Jsoup.connect(docUrl).get();
+                Elements spans = doc.select("div[id=contents]").select("span");
+                for(Element span : spans){
+                    updateMsg = updateMsg + span.text() +"\n";
+                    Log.d("grabDocData","span["+span.id()+"]="+span.text());
+
+                }
+                Log.d("grabDocData",updateMsg);
+
+
+                Log.d("grabDocData","FINISH------------------------------------------");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -120,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
             dataObject.parseData();
             goToTfilaCtivity.setBackgroundColor(Color.GREEN);
             showWelcomeText();
+            showUpdateMsg();
             try {
                 printMinyansVectorData();
                 showClosestMinyans();
@@ -178,6 +201,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
     public void showWelcomeText()
     {
@@ -245,6 +270,23 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+
+    public void showUpdateMsg()
+    {
+        if(updateMsg.length()>1)
+        {
+            updateMsgTV.append(updateMsg);
+            updateMsgTV.setMovementMethod(new ScrollingMovementMethod());
+        }
+        else
+        {
+            updateMsgTV.setTextColor(Color.RED);
+            updateMsgTV.append("אין הודעות חדשות");
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
