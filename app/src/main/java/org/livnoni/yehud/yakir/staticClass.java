@@ -1,10 +1,8 @@
-package com.example.yehud.yakir;
+package org.livnoni.yehud.yakir;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Stack;
 import java.util.Vector;
 
 /**

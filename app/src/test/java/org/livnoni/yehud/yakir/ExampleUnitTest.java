@@ -1,4 +1,4 @@
-package com.example.yehud.yakir;
+package org.livnoni.yehud.yakir;
 
 import org.junit.Test;
 
