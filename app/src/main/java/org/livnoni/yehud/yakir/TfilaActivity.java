@@ -1,5 +1,7 @@
 package org.livnoni.yehud.yakir;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,13 +38,14 @@ public class TfilaActivity extends AppCompatActivity
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         numOfMinayans = MainActivity.minyansVector.size();
         currentMinyanIndex =0;
         radioButtons = new RadioButton[numOfMinayans];
 
         LinearLayoutForBtns = (LinearLayout) findViewById(R.id.LinearLayoutForBtns);
-
 
         initializelUI();
         initializelRadioButtons();
@@ -63,10 +66,21 @@ public class TfilaActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {
         currentMinyanIndex = menuItem.getItemId();
-        initializelUI();
-        initializelRadioButtons();
+        if(currentMinyanIndex == android.R.id.home) //back button have pressed
+        {
+            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(myIntent, 0);
+        }
+        else                                        //menu buttons have pressed.
+        {
+            Log.d("menuItem=",currentMinyanIndex+"");  //16908332
+            initializelUI();
+            initializelRadioButtons();
+        }
         return super.onOptionsItemSelected(menuItem);
+
     }
+
 
 
     public void initializelUI()
