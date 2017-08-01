@@ -210,7 +210,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ClosestDate=",closestDate[0]+","+closestDate[1]+","+closestDate[2]);
             }
         }
-        if(closestMinyansTV.getText()=="")
+        if(closestMinyansTV.getText() == "")
+        {
+            currentDat = "00:01";
+            for(int i=0; i<minyansVector.size(); i++)
+            {
+                String [] closestDate = minyansVector.get(i).getNearestMinyans(currentDat);
+                if(closestDate != null)
+                {
+                    closestMinyansTV.append( closestDate[0]+": "+closestDate[1]+" ב-"+closestDate[2]+"\n");
+                    Log.d("ClosestDate=",closestDate[0]+","+closestDate[1]+","+closestDate[2]);
+                }
+            }
+        }
+        if(closestMinyansTV.getText() == "")
         {
             closestMinyansTV.setTextColor(Color.RED);
             closestMinyansTV.append("אין מניינים בזמן הקרוב");
