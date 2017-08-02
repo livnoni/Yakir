@@ -11,14 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="org.livnoni.yehud.yakir.MainActivity" android:screenOrientation="portrait">android:screenOrientation="portrait"
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.livnoni.yehud.yakir.TfilaActivity" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".TfilaActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RavActivity"></activity>
     </application>
 
 </manifest>

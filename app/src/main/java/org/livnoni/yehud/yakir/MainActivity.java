@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,7 +33,7 @@ import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button goToTfilaCtivity;
+    Button goToTfilaCtivity, RavBtn;
     private ProgressDialog mProgressDialog;
     TextView welcomeView ,closestMinyansTV, updateMsgTV;
 
@@ -51,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+        RavBtn =(Button) findViewById(R.id.RavBtn);
         goToTfilaCtivity = (Button) findViewById(R.id.TfilaBtn);
-        goToTfilaCtivity.setBackgroundColor(Color.RED);
+        changeButtonBackground(goToTfilaCtivity,true);
+        changeButtonBackground(RavBtn,true);
 
         welcomeView = (TextView) findViewById(R.id.welcomeView);
         closestMinyansTV = (TextView) findViewById(R.id.closestMinyansTV);
@@ -69,12 +73,29 @@ public class MainActivity extends AppCompatActivity {
         dataObject = new DataObject();
         new grabData().execute();
 
+        //Animation:
+        final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
+        final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
+        final Animation animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
+        final Animation animRotate = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
+
+
         goToTfilaCtivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(animScale);
                 startActivity(new Intent(MainActivity.this, TfilaActivity.class));
             }
         });
+
+        RavBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(animScale);
+                startActivity(new Intent(MainActivity.this, RavActivity.class));
+            }
+        });
+
     }
 
     public class grabData extends AsyncTask<Void,Void,Void>{
@@ -124,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
             mProgressDialog.dismiss();
             dataObject.printData();
             dataObject.parseData();
-            goToTfilaCtivity.setBackgroundColor(Color.GREEN);
+            changeButtonBackground(goToTfilaCtivity,false);
+            changeButtonBackground(RavBtn,false);
             showWelcomeText();
             showUpdateMsg();
             try {
@@ -307,5 +329,26 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    public void changeButtonBackground(Button button, boolean error)
+    {
+        final int sdk = android.os.Build.VERSION.SDK_INT;
+        if(error)
+        {
+            if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                button.setBackgroundDrawable( getResources().getDrawable(R.drawable.buttonshaperrror) );
+            } else {
+                button.setBackground( getResources().getDrawable(R.drawable.buttonshaperrror));
+            }
+        }
+        else
+        {
+            if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                button.setBackgroundDrawable( getResources().getDrawable(R.drawable.buttonshape) );
+            } else {
+                button.setBackground( getResources().getDrawable(R.drawable.buttonshape));
+            }
+        }
     }
 }
