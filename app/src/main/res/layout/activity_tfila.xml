@@ -239,7 +239,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/copyright"
-                android:textColor="@color/red" />
+                android:textColor="@color/red"
+                android:textSize="10dp"/>
         </LinearLayout>
 
 
