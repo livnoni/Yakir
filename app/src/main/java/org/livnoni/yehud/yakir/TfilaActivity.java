@@ -101,8 +101,8 @@ public class TfilaActivity extends AppCompatActivity
         setText(week_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.arvit.getTimes());
 
         setText(saturday_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
-        setText(saturday_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
-        setText(saturday_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
+        setText(saturday_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.minha.getTimes());
+        setText(saturday_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.arvit.getTimes());
 
     }
 
