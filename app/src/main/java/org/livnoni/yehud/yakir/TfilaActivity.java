@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -34,6 +35,9 @@ public class TfilaActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tfila);
+
+        forceEnglishView();
+
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
@@ -178,7 +182,7 @@ public class TfilaActivity extends AppCompatActivity
                 Log.d("POS=","x2="+x2);
 
                 //if left to right sweep event on screen
-                if (x2 - x1 > swipeSensitivity)
+                if (x1 - x2 > swipeSensitivity)
                 {
                     if(currentMinyanIndex>0)
                     {
@@ -190,7 +194,7 @@ public class TfilaActivity extends AppCompatActivity
                 }
 
                 // if right to left sweep event on screen
-                if (x1 - x2 > swipeSensitivity)
+                if (x2 - x1 > swipeSensitivity)
                 {
                     if(currentMinyanIndex<numOfMinayans-1)
                     {
@@ -206,6 +210,13 @@ public class TfilaActivity extends AppCompatActivity
             }
         }
         return false;
+    }
+
+    public void forceEnglishView()
+    {
+        if (getWindow().getDecorView().getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
     }
 
 
