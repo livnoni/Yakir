@@ -35,14 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
     Button goToTfilaCtivity, RavBtn;
     private ProgressDialog mProgressDialog;
-    TextView welcomeView ,closestMinyansTV, updateMsgTV;
+    TextView welcomeView ,closestMinyansTV, updateMsgTV,HebrewDateTV;
 
 
     String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
     String docUrl = "https://docs.google.com/document/d/1SjlZiydYFpwctaTzcuVGx3C1tVT3DqFX-AOQh4vhHiw/pub";
+    String dateUrl = "http://www.hebcal.com/etc/hdate-he.js";
     DataObject dataObject;
     String updateMsg ="";
-    public static Vector<staticClass.Minyan> minyansVector;
+    public static Vector<StaticClass.Minyan> minyansVector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         welcomeView = (TextView) findViewById(R.id.welcomeView);
         closestMinyansTV = (TextView) findViewById(R.id.closestMinyansTV);
         updateMsgTV = (TextView) findViewById(R.id.updateMsgTV);
+        HebrewDateTV = (TextView) findViewById(R.id.HebrewDateView);
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(false);
@@ -71,15 +73,12 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setTitle("מתחבר לשרת...");
         mProgressDialog.setMessage("טוען זמני תפילות");
 
-        minyansVector = new Vector<staticClass.Minyan>();
+        minyansVector = new Vector<StaticClass.Minyan>();
         dataObject = new DataObject();
         new grabData().execute();
 
         //Animation:
-        final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.anim_translate);
-        final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
         final Animation animScale = AnimationUtils.loadAnimation(this, R.anim.anim_scale);
-        final Animation animRotate = AnimationUtils.loadAnimation(this, R.anim.anim_rotate);
 
 
         goToTfilaCtivity.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, RavActivity.class));
             }
         });
-
     }
 
     public class grabData extends AsyncTask<Void,Void,Void>{
@@ -131,9 +129,14 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 Log.d("grabDocData",updateMsg);
-
-
                 Log.d("grabDocData","FINISH------------------------------------------");
+
+                doc = Jsoup.connect(dateUrl).get();
+                initialDate(doc.text());
+                Log.d("grabDateUrl",doc.text());
+                Log.d("grabDateUrl","FINISH------------------------------------------");
+
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -194,16 +197,16 @@ public class MainActivity extends AppCompatActivity {
             for(int i=0; i<minyanArrayList.size(); i++)
             {
                 String tempMinyanName = minyanArrayList.get(i)[1][0];
-                staticClass.TfilaTime tempShaharit = new staticClass.TfilaTime(minyanArrayList.get(i)[4]);
-                staticClass.TfilaTime tempMinha = new staticClass.TfilaTime(minyanArrayList.get(i)[5]);
-                staticClass.TfilaTime tempArvit = new staticClass.TfilaTime(minyanArrayList.get(i)[6]);
-                staticClass.Tfila tempWeekday = new staticClass.Tfila(tempShaharit, tempMinha, tempArvit);
+                StaticClass.TfilaTime tempShaharit = new StaticClass.TfilaTime(minyanArrayList.get(i)[4]);
+                StaticClass.TfilaTime tempMinha = new StaticClass.TfilaTime(minyanArrayList.get(i)[5]);
+                StaticClass.TfilaTime tempArvit = new StaticClass.TfilaTime(minyanArrayList.get(i)[6]);
+                StaticClass.Tfila tempWeekday = new StaticClass.Tfila(tempShaharit, tempMinha, tempArvit);
 
-                staticClass.TfilaTime tempShaharit2 = new staticClass.TfilaTime(minyanArrayList.get(i)[9]);
-                staticClass.TfilaTime tempMinha2 = new staticClass.TfilaTime(minyanArrayList.get(i)[10]);
-                staticClass.TfilaTime tempArvit2 = new staticClass.TfilaTime(minyanArrayList.get(i)[11]);
-                staticClass.Tfila tempsaturday = new staticClass.Tfila(tempShaharit2, tempMinha2, tempArvit2);
-                staticClass.Minyan tempMinyan = new staticClass.Minyan(tempMinyanName , tempWeekday , tempsaturday);
+                StaticClass.TfilaTime tempShaharit2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[9]);
+                StaticClass.TfilaTime tempMinha2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[10]);
+                StaticClass.TfilaTime tempArvit2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[11]);
+                StaticClass.Tfila tempsaturday = new StaticClass.Tfila(tempShaharit2, tempMinha2, tempArvit2);
+                StaticClass.Minyan tempMinyan = new StaticClass.Minyan(tempMinyanName , tempWeekday , tempsaturday);
 
                 minyansVector.add(tempMinyan);
             }
@@ -358,5 +361,27 @@ public class MainActivity extends AppCompatActivity {
         if (getWindow().getDecorView().getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
+    }
+
+    public void initialDate(String date)
+    {
+        try {
+            String data = date.substring(date.indexOf('(') + 2, date.indexOf(')')-1);
+            StaticClass.HebrewTime hebrewTime = new StaticClass.HebrewTime(data);
+            Log.d("hebrewTime=",hebrewTime.toString());
+
+            HebrewDateTV.setText(hebrewTime.toString());
+
+
+
+
+        }
+        catch (Exception e)
+        {
+            Log.e("Substring_HebDate: ",e.toString());
+
+        }
+
+
     }
 }

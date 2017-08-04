@@ -9,7 +9,7 @@ import java.util.Vector;
  * Created by yehud on 7/27/2017.
  */
 
-public class staticClass
+public class StaticClass
 {
     public static class Minyan
     {
@@ -132,5 +132,19 @@ public class staticClass
             }
             return time;
         }
+    }
+    public static class HebrewTime
+    {
+        String currentDate;
+        HebrewTime(String s)
+        {
+            this.currentDate = s;
+        }
+        public String toString()
+        {
+            return currentDate;
+        }
+
+
     }
 }
