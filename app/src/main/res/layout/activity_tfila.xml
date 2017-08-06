@@ -61,6 +61,15 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/week_sharitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="שחרית" />
+
+
+
+                <TextView
                     android:id="@+id/week_sharitTimesTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,12 +77,6 @@
                     android:gravity="center"
                     android:text="שעות" />
 
-                <TextView
-                    android:id="@+id/week_sharitTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="שחרית" />
 
 
             </LinearLayout>
@@ -84,6 +87,13 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/week_MinhaTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="מנחה " />
+
+                <TextView
                     android:id="@+id/week_MinhaTimesTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,12 +101,7 @@
                     android:gravity="center"
                     android:text="שעות" />
 
-                <TextView
-                    android:id="@+id/week_MinhaTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="מנחה " />
+
 
 
             </LinearLayout>
@@ -107,6 +112,13 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/week_ArvitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="ערבית" />
+
+                <TextView
                     android:id="@+id/week_ArvitTimesTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,12 +126,7 @@
                     android:gravity="center"
                     android:text="שעות" />
 
-                <TextView
-                    android:id="@+id/week_ArvitTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="ערבית" />
+
 
 
             </LinearLayout>
@@ -149,20 +156,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/saturday_sharitTimesTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="שעות" />
-
-                <TextView
                     android:id="@+id/saturday_sharitTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.10"
                     android:text="שחרית" />
 
+                <TextView
+                    android:id="@+id/saturday_sharitTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="שעות" />
 
             </LinearLayout>
 
@@ -172,20 +178,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/saturday_MinhaTimesTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="שעות" />
-
-                <TextView
                     android:id="@+id/saturday_MinhaTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.10"
                     android:text="מנחה " />
 
+                <TextView
+                    android:id="@+id/saturday_MinhaTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="שעות" />
 
             </LinearLayout>
 
@@ -195,20 +200,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/saturday_ArvitTimesTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="שעות" />
-
-                <TextView
                     android:id="@+id/saturday_ArvitTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.10"
                     android:text="ערבית" />
 
+                <TextView
+                    android:id="@+id/saturday_ArvitTimesTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="שעות" />
 
             </LinearLayout>
 
