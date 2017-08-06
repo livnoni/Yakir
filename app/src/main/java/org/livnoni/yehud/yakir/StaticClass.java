@@ -144,7 +144,34 @@ public class StaticClass
         {
             return currentDate;
         }
+    }
+    public static class ShabatInfo
+    {
+        static String currentName;
+        static String enterShabatTime;
+        static String exitShabatTime;
 
-
+        ShabatInfo(String name, String enter, String exit)
+        {
+            this.currentName = name;
+            this.enterShabatTime = enter;
+            this.exitShabatTime = exit;
+        }
+        public String toString()
+        {
+            return "["+currentName+","+enterShabatTime+","+exitShabatTime+"]";
+        }
+        public static String getShabatName()
+        {
+            return currentName;
+        }
+        public static String getShabatEnter()
+        {
+            return enterShabatTime;
+        }
+        public static String getShabatExit()
+        {
+            return exitShabatTime;
+        }
     }
 }

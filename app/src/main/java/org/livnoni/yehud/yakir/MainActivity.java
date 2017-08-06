@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,11 +19,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,12 +41,13 @@ public class MainActivity extends AppCompatActivity {
 
     Button goToTfilaCtivity, RavBtn;
     private ProgressDialog mProgressDialog;
-    TextView welcomeView ,closestMinyansTV, updateMsgTV,HebrewDateTV;
+    TextView welcomeView ,closestMinyansTV, updateMsgTV,HebrewDateTV,shabatTimesTV;
 
 
-    String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
-    String docUrl = "https://docs.google.com/document/d/1SjlZiydYFpwctaTzcuVGx3C1tVT3DqFX-AOQh4vhHiw/pub";
-    String dateUrl = "http://www.hebcal.com/etc/hdate-he.xml";
+    public static String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
+    public static String docUrl = "https://docs.google.com/document/d/1SjlZiydYFpwctaTzcuVGx3C1tVT3DqFX-AOQh4vhHiw/pub";
+    public static String dateUrl = "http://www.hebcal.com/etc/hdate-he.xml";
+    public static String shabatTimesUrl = "http://www.hebcal.com/shabbat/?cfg=json&geonameid=8199422&m=40";
     DataObject dataObject;
     String updateMsg ="";
     public static Vector<StaticClass.Minyan> minyansVector;
@@ -68,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         closestMinyansTV = (TextView) findViewById(R.id.closestMinyansTV);
         updateMsgTV = (TextView) findViewById(R.id.updateMsgTV);
         HebrewDateTV = (TextView) findViewById(R.id.HebrewDateView);
+        shabatTimesTV = (TextView) findViewById(R.id.shabatTimesTV);
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(false);
@@ -134,10 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("grabDocData",updateMsg);
                 Log.d("grabDocData","FINISH------------------------------------------");
 
-//                doc = Jsoup.connect(dateUrl).get();
-//                initialDate(doc.text());
-//                Log.d("grabDateUrl",doc.text());
-//                Log.d("grabDateUrl","FINISH------------------------------------------");
 
                 doc = Jsoup.parse(new URL(dateUrl).openStream(), "UTF-8", "", Parser.xmlParser());
                 hebrewDate = doc.select("title").last().text();
@@ -147,11 +149,32 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+                String json = Jsoup.connect(shabatTimesUrl).ignoreContentType(true).execute().body();
+
+                JSONObject jsonObj = new JSONObject(json);
+
+                Log.d("grabShabat",json.toString());
+
+                String shabatName = jsonObj.getJSONArray("items").getJSONObject(2).getString("hebrew");
+                String enterShabat = jsonObj.getJSONArray("items").getJSONObject(1).getString("title").substring(17);
+                String exitShabat = jsonObj.getJSONArray("items").getJSONObject(3).getString("title").substring(19);
+
+                Log.d("grabShabat",enterShabat);
+                Log.d("grabShabat",shabatName);
+                Log.d("grabShabat",exitShabat);
+
+                StaticClass.ShabatInfo shabatInfo = new StaticClass.ShabatInfo(shabatName , enterShabat, exitShabat);
+
+                Log.d("grabShabat","FINISH------------------------------------------");
+
+
 
 
 
 
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
@@ -168,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
             showWelcomeText();
             showUpdateMsg();
             initialDate();
+            showShabatTimes();
             try {
                 printMinyansVectorData();
                 showClosestMinyans();
@@ -330,6 +354,7 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.setIcon(R.drawable.ic_info_black_24dp);
                 alertDialog.setTitle("אודות");
                 alertDialog.setMessage("אפליקציית יקיר"+"\n"+"מציגה מידע עדכני אודות זמני תפילות"+"\n"+"נכונות המידע בכפוף לעדכוני הגבאים"+"\n\n\n"+getString(R.string.copyright));
+                
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -386,6 +411,32 @@ public class MainActivity extends AppCompatActivity {
         {
             HebrewDateTV.setText("");
         }
+
+    }
+    public void showShabatTimes()
+    {
+        String enter = changeTimeFormat(StaticClass.ShabatInfo.getShabatEnter());
+        String exit = changeTimeFormat(StaticClass.ShabatInfo.getShabatExit());
+
+
+        shabatTimesTV.setText("פרשת השבוע: "+StaticClass.ShabatInfo.getShabatName()+"\n"+
+                                "כניסת השבת: "+enter+"\n"+
+                                "יציאת השבת:"+exit);
+    }
+    public String changeTimeFormat(String s)
+    {
+        try {
+            String hour = s.split(":")[0];
+            String min = s.split(":")[1];
+            hour = (Integer.parseInt(hour)+12)+"";
+            min = min.split("p")[0];
+            return hour+":"+min;
+        }
+        catch (Exception e)
+        {
+
+        }
+        return "";
 
     }
 }

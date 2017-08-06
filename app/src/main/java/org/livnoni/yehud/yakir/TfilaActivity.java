@@ -24,7 +24,7 @@ public class TfilaActivity extends AppCompatActivity
     public int currentMinyanIndex;
     // FOr get the Objject of all the data: MainActivity.minyansVector.get(currentMinyanIndex)
 
-    TextView minyanTitleTV,week_sharitTimesTV,week_MinhaTimesTV,week_ArvitTimesTV,saturday_sharitTimesTV,saturday_MinhaTimesTV,saturday_ArvitTimesTV;
+    TextView minyanTitleTV,week_sharitTimesTV,week_MinhaTimesTV,week_ArvitTimesTV,saturday_sharitTimesTV,saturday_MinhaTimesTV,saturday_ArvitTimesTV,saturdayTV;
     RadioButton[] radioButtons;
     LinearLayout LinearLayoutForBtns;
 
@@ -37,6 +37,13 @@ public class TfilaActivity extends AppCompatActivity
         setContentView(R.layout.activity_tfila);
 
         forceEnglishView();
+
+        saturdayTV = (TextView) findViewById(R.id.saturdayTV);
+
+        if(StaticClass.ShabatInfo.getShabatName().length()>5)
+        {
+            saturdayTV.setText("שבת "+StaticClass.ShabatInfo.getShabatName());
+        }
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
