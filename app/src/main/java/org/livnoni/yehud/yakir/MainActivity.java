@@ -21,9 +21,11 @@ import android.widget.TextView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
     String sheetUrl = "https://docs.google.com/spreadsheets/d/1AercbZdDUV5AhMFT7YTCHLsHGzxmY1HCynpt9qw-zyM/pubhtml#";
     String docUrl = "https://docs.google.com/document/d/1SjlZiydYFpwctaTzcuVGx3C1tVT3DqFX-AOQh4vhHiw/pub";
-    String dateUrl = "http://www.hebcal.com/etc/hdate-he.js";
+    String dateUrl = "http://www.hebcal.com/etc/hdate-he.xml";
     DataObject dataObject;
     String updateMsg ="";
     public static Vector<StaticClass.Minyan> minyansVector;
+    public static String hebrewDate ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,10 +134,20 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("grabDocData",updateMsg);
                 Log.d("grabDocData","FINISH------------------------------------------");
 
-                doc = Jsoup.connect(dateUrl).get();
-                initialDate(doc.text());
-                Log.d("grabDateUrl",doc.text());
+//                doc = Jsoup.connect(dateUrl).get();
+//                initialDate(doc.text());
+//                Log.d("grabDateUrl",doc.text());
+//                Log.d("grabDateUrl","FINISH------------------------------------------");
+
+                doc = Jsoup.parse(new URL(dateUrl).openStream(), "UTF-8", "", Parser.xmlParser());
+                hebrewDate = doc.select("title").last().text();
+                Log.d("grabDateUrl",hebrewDate);
                 Log.d("grabDateUrl","FINISH------------------------------------------");
+
+
+
+
+
 
 
 
@@ -154,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             changeButtonBackground(RavBtn,false);
             showWelcomeText();
             showUpdateMsg();
+            initialDate();
             try {
                 printMinyansVectorData();
                 showClosestMinyans();
@@ -363,25 +377,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void initialDate(String date)
+    public void initialDate()
     {
         try {
-            String data = date.substring(date.indexOf('(') + 2, date.indexOf(')')-1);
-            StaticClass.HebrewTime hebrewTime = new StaticClass.HebrewTime(data);
-            Log.d("hebrewTime=",hebrewTime.toString());
-
-            HebrewDateTV.setText(hebrewTime.toString());
-
-
-
-
+            HebrewDateTV.setText(hebrewDate);
         }
         catch (Exception e)
         {
-            Log.e("Substring_HebDate: ",e.toString());
-
+            HebrewDateTV.setText("");
         }
-
 
     }
 }
