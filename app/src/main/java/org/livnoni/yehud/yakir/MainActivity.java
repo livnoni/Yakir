@@ -155,13 +155,13 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("grabShabat",json.toString());
 
-                String shabatName = jsonObj.getJSONArray("items").getJSONObject(2).getString("hebrew");
-                String enterShabat = jsonObj.getJSONArray("items").getJSONObject(1).getString("title").substring(17);
-                String exitShabat = jsonObj.getJSONArray("items").getJSONObject(3).getString("title").substring(19);
-
-                Log.d("grabShabat",enterShabat);
+                String shabatName = jsonObj.getJSONArray("items").getJSONObject(1).getString("hebrew");
                 Log.d("grabShabat",shabatName);
+                String enterShabat = jsonObj.getJSONArray("items").getJSONObject(0).getString("title").substring(17);
+                Log.d("grabShabat",enterShabat);
+                String exitShabat = jsonObj.getJSONArray("items").getJSONObject(2).getString("title").substring(19);
                 Log.d("grabShabat",exitShabat);
+                
 
                 StaticClass.ShabatInfo shabatInfo = new StaticClass.ShabatInfo(shabatName , enterShabat, exitShabat);
 
@@ -176,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
+            }catch (Exception e){
+
             }
             return null;
         }
@@ -197,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 showClosestMinyans();
             } catch (ParseException e) {
                 e.printStackTrace();
+                Log.d("ERROR!", "some error happened...");
             }
         }
 
@@ -354,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.setIcon(R.drawable.ic_info_black_24dp);
                 alertDialog.setTitle("אודות");
                 alertDialog.setMessage("אפליקציית יקיר"+"\n"+"מציגה מידע עדכני אודות זמני תפילות"+"\n"+"נכונות המידע בכפוף לעדכוני הגבאים"+"\n\n\n"+getString(R.string.copyright));
-                
+
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
