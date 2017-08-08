@@ -161,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("grabShabat",enterShabat);
                 String exitShabat = jsonObj.getJSONArray("items").getJSONObject(2).getString("title").substring(19);
                 Log.d("grabShabat",exitShabat);
-                
 
                 StaticClass.ShabatInfo shabatInfo = new StaticClass.ShabatInfo(shabatName , enterShabat, exitShabat);
 
