@@ -79,8 +79,7 @@ public class TfilaActivity extends AppCompatActivity
         currentMinyanIndex = menuItem.getItemId();
         if(currentMinyanIndex == android.R.id.home) //back button have pressed
         {
-            Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivityForResult(myIntent, 0);
+            onBackPressed();
         }
         else                                        //menu buttons have pressed.
         {

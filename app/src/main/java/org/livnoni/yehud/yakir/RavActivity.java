@@ -61,7 +61,6 @@ public class RavActivity extends AppCompatActivity {
 
 
     public class grabData extends AsyncTask<Void,Void,Void> {
-        String[][] trtd;
         @Override
         protected Void doInBackground(Void... params) {
             try {
@@ -115,8 +114,7 @@ public class RavActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {
-        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivityForResult(myIntent, 0);
+        onBackPressed();
         return super.onOptionsItemSelected(menuItem);
 
     }
