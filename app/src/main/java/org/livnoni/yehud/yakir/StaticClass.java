@@ -90,6 +90,7 @@ public class StaticClass
     public static class Tfila
     {
         TfilaTime shaharit,minha,arvit;
+        TfilaTime kabalatShabat;
 
         public Tfila(TfilaTime shaharit, TfilaTime minha, TfilaTime arvit)
         {
@@ -97,9 +98,24 @@ public class StaticClass
             this.minha = minha;
             this.arvit = arvit;
         }
+        public Tfila(TfilaTime kabalatShabat, TfilaTime shaharit, TfilaTime minha, TfilaTime arvit)
+        {
+            this.kabalatShabat = kabalatShabat;
+            this.shaharit = shaharit;
+            this.minha = minha;
+            this.arvit = arvit;
+        }
         public String toString()
         {
-            return "[shaharit="+shaharit.toString()+"],["+"minha="+minha.toString()+"],["+"arvit="+arvit.toString()+"]";
+            if(kabalatShabat != null )
+            {
+                return "[minhaShbat"+kabalatShabat.toString()+"],[shaharit="+shaharit.toString()+"],["+"minha="+minha.toString()+"],["+"arvit="+arvit.toString()+"]";
+
+            }
+            else
+            {
+                return "[shaharit="+shaharit.toString()+"],["+"minha="+minha.toString()+"],["+"arvit="+arvit.toString()+"]";
+            }
         }
 
 

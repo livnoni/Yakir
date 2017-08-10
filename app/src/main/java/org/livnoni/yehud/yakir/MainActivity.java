@@ -242,10 +242,11 @@ public class MainActivity extends AppCompatActivity {
                 StaticClass.TfilaTime tempArvit = new StaticClass.TfilaTime(minyanArrayList.get(i)[6]);
                 StaticClass.Tfila tempWeekday = new StaticClass.Tfila(tempShaharit, tempMinha, tempArvit);
 
-                StaticClass.TfilaTime tempShaharit2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[9]);
-                StaticClass.TfilaTime tempMinha2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[10]);
-                StaticClass.TfilaTime tempArvit2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[11]);
-                StaticClass.Tfila tempsaturday = new StaticClass.Tfila(tempShaharit2, tempMinha2, tempArvit2);
+                StaticClass.TfilaTime tempKabalatShabat = new StaticClass.TfilaTime(minyanArrayList.get(i)[9]);
+                StaticClass.TfilaTime tempShaharit2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[10]);
+                StaticClass.TfilaTime tempMinha2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[11]);
+                StaticClass.TfilaTime tempArvit2 = new StaticClass.TfilaTime(minyanArrayList.get(i)[12]);
+                StaticClass.Tfila tempsaturday = new StaticClass.Tfila(tempKabalatShabat,tempShaharit2, tempMinha2, tempArvit2);
                 StaticClass.Minyan tempMinyan = new StaticClass.Minyan(tempMinyanName , tempWeekday , tempsaturday);
 
                 minyansVector.add(tempMinyan);

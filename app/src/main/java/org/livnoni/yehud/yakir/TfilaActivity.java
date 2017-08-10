@@ -24,7 +24,7 @@ public class TfilaActivity extends AppCompatActivity
     public int currentMinyanIndex;
     // FOr get the Objject of all the data: MainActivity.minyansVector.get(currentMinyanIndex)
 
-    TextView minyanTitleTV,week_sharitTimesTV,week_MinhaTimesTV,week_ArvitTimesTV,saturday_sharitTimesTV,saturday_MinhaTimesTV,saturday_ArvitTimesTV,saturdayTV;
+    TextView minyanTitleTV,week_sharitTimesTV,week_MinhaTimesTV,week_ArvitTimesTV,saturday_kabalatShabatTimesTV,saturday_sharitTimesTV,saturday_MinhaTimesTV,saturday_ArvitTimesTV,saturdayTV;
     RadioButton[] radioButtons;
     LinearLayout LinearLayoutForBtns;
 
@@ -100,6 +100,7 @@ public class TfilaActivity extends AppCompatActivity
         week_sharitTimesTV = (TextView) findViewById(R.id.week_sharitTimesTV);
         week_MinhaTimesTV = (TextView) findViewById(R.id.week_MinhaTimesTV);
         week_ArvitTimesTV = (TextView) findViewById(R.id.week_ArvitTimesTV);
+        saturday_kabalatShabatTimesTV = (TextView) findViewById(R.id.saturday_kabalatShabatTimesTV);
         saturday_sharitTimesTV = (TextView) findViewById(R.id.saturday_sharitTimesTV);
         saturday_MinhaTimesTV = (TextView) findViewById(R.id.saturday_MinhaTimesTV);
         saturday_ArvitTimesTV = (TextView) findViewById(R.id.saturday_ArvitTimesTV);
@@ -110,6 +111,7 @@ public class TfilaActivity extends AppCompatActivity
         setText(week_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.minha.getTimes());
         setText(week_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.arvit.getTimes());
 
+        setText(saturday_kabalatShabatTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.kabalatShabat.getTimes());
         setText(saturday_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
         setText(saturday_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.minha.getTimes());
         setText(saturday_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.arvit.getTimes());

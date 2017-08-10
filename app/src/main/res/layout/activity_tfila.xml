@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yehud.yakir.org.example.yehud.yakir.TfilaActivity">
-
+    tools:context="org.livnoni.yehud.yakir.TfilaActivity">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -20,7 +19,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -32,17 +31,18 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="שם מניין"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="0dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="179dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/customborder"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
 
 
             <TextView
@@ -55,78 +55,71 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_marginTop="6dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
 
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/week_sharitTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
+                    android:layout_weight="1"
                     android:text="שחרית" />
-
 
 
                 <TextView
                     android:id="@+id/week_sharitTimesTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_weight="2"
                     android:text="שעות" />
-
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="53dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:id="@+id/week_MinhaTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
+                    android:layout_weight="1"
                     android:text="מנחה " />
 
                 <TextView
                     android:id="@+id/week_MinhaTimesTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_weight="2"
                     android:text="שעות" />
-
-
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:id="@+id/week_ArvitTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
+                    android:layout_weight="1"
                     android:text="ערבית" />
 
                 <TextView
                     android:id="@+id/week_ArvitTimesTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_weight="2"
                     android:text="שעות" />
-
-
 
 
             </LinearLayout>
@@ -135,8 +128,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="179dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:background="@drawable/customborder"
             android:orientation="vertical">
 
@@ -151,67 +144,88 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_marginTop="6dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/saturday_kabalatShabatTV"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="קבלת שבת" />
+
+                <TextView
+                    android:id="@+id/saturday_kabalatShabatTimesTV"
+                    android:layout_width="0.dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="שעות" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/saturday_sharitTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
+                    android:layout_weight="1"
                     android:text="שחרית" />
 
                 <TextView
                     android:id="@+id/saturday_sharitTimesTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_weight="2"
                     android:text="שעות" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="53dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:id="@+id/saturday_MinhaTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="מנחה " />
+                    android:layout_weight="1"
+                    android:text="מנחה" />
 
                 <TextView
                     android:id="@+id/saturday_MinhaTimesTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_weight="2"
                     android:text="שעות" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:id="@+id/saturday_ArvitTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="ערבית" />
+                    android:layout_weight="1"
+                    android:text='ערבית מוצ"ש' />
 
                 <TextView
                     android:id="@+id/saturday_ArvitTimesTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_weight="2"
                     android:text="שעות" />
 
             </LinearLayout>
@@ -223,8 +237,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
 
 
         </LinearLayout>
@@ -232,22 +246,23 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/creditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="@string/copyright"
                 android:textColor="@color/red"
-                android:textSize="10dp"/>
+                android:textSize="10dp" />
         </LinearLayout>
 
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
