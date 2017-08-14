@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -165,10 +166,6 @@ public class MainActivity extends AppCompatActivity {
                 StaticClass.ShabatInfo shabatInfo = new StaticClass.ShabatInfo(shabatName , enterShabat, exitShabat);
 
                 Log.d("grabShabat","FINISH------------------------------------------");
-
-
-
-
 
 
             } catch (IOException e) {
@@ -420,11 +417,18 @@ public class MainActivity extends AppCompatActivity {
     {
         String enter = changeTimeFormat(StaticClass.ShabatInfo.getShabatEnter());
         String exit = changeTimeFormat(StaticClass.ShabatInfo.getShabatExit());
+        String shabatName = StaticClass.ShabatInfo.getShabatName();
+        if(enter != null && exit != null && shabatName != null && 1 >2)
+        {
+            shabatTimesTV.setText("פרשת השבוע: "+shabatName+"\n"+
+                    "כניסת השבת: "+enter+"\n"+
+                    "יציאת השבת:"+exit);
+        }
+        else //for case we cant get valid data...
+        {
+            ((LinearLayout) findViewById(R.id.mainLLinearLayout)).removeView(((LinearLayout) findViewById(R.id.shabatTimesLayout)));
+        }
 
-
-        shabatTimesTV.setText("פרשת השבוע: "+StaticClass.ShabatInfo.getShabatName()+"\n"+
-                                "כניסת השבת: "+enter+"\n"+
-                                "יציאת השבת:"+exit);
     }
     public String changeTimeFormat(String s)
     {

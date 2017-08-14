@@ -40,10 +40,18 @@ public class TfilaActivity extends AppCompatActivity
 
         saturdayTV = (TextView) findViewById(R.id.saturdayTV);
 
-        if(StaticClass.ShabatInfo.getShabatName().length()>5)
-        {
-            saturdayTV.setText("שבת "+StaticClass.ShabatInfo.getShabatName());
+        try{
+            if(StaticClass.ShabatInfo.getShabatName().length()>5)
+            {
+                saturdayTV.setText("שבת "+StaticClass.ShabatInfo.getShabatName());
+            }
         }
+        catch (Exception e)
+        {
+            Log.d("Error", "error load parahsa name");
+        }
+
+
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
