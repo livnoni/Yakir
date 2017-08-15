@@ -331,6 +331,9 @@ public class MainActivity extends AppCompatActivity {
         {
             updateMsgTV.append(updateMsg);
             updateMsgTV.setMovementMethod(new ScrollingMovementMethod());
+
+
+
         }
         else
         {
