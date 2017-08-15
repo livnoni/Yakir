@@ -346,6 +346,7 @@ public class MainActivity extends AppCompatActivity {
     {
         menu.add(Menu.NONE,0,Menu.NONE,"אודות");
         menu.add(Menu.NONE,1,Menu.NONE,"שלח פידבק");
+        menu.add(Menu.NONE,2,Menu.NONE,"שתף חברים");
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -374,6 +375,15 @@ public class MainActivity extends AppCompatActivity {
                 Email.putExtra(Intent.EXTRA_SUBJECT, "פידבק לאפליקציית יקיר");
                 Email.putExtra(Intent.EXTRA_TEXT, "היי, רציתי להגיד ש..." + "");
                 startActivity(Intent.createChooser(Email, "Send Feedback:"));
+                break;
+            case 2:
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                String shareBody = "ניגמרו התירוצים...אפליקציית זמני תפילות יקיר!"+"\t"+"https://play.google.com/store/apps/details?id=org.livnoni.yehud.yakir";
+                String shareSub ="אפליקציית זמני תפילות יקיר";
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(shareIntent , "SHARE USING"));
                 break;
         }
         return super.onOptionsItemSelected(menuItem);
