@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -106,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, RavActivity.class));
             }
         });
+
+
+
     }
 
     public class grabData extends AsyncTask<Void,Void,Void>{
@@ -418,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
         String enter = changeTimeFormat(StaticClass.ShabatInfo.getShabatEnter());
         String exit = changeTimeFormat(StaticClass.ShabatInfo.getShabatExit());
         String shabatName = StaticClass.ShabatInfo.getShabatName();
-        if(enter != null && exit != null && shabatName != null && 1 >2)
+        if( enter != null && exit != null && shabatName != null )
         {
             shabatTimesTV.setText("פרשת השבוע: "+shabatName+"\n"+
                     "כניסת השבת: "+enter+"\n"+

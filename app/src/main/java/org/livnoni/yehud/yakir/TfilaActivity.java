@@ -1,8 +1,10 @@
 package org.livnoni.yehud.yakir;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -103,26 +105,47 @@ public class TfilaActivity extends AppCompatActivity
 
     public void initializelUI()
     {
-        minyanTitleTV = (TextView) findViewById(R.id.minyanTitleTV);
+        if(numOfMinayans > 0 )
+        {
 
-        week_sharitTimesTV = (TextView) findViewById(R.id.week_sharitTimesTV);
-        week_MinhaTimesTV = (TextView) findViewById(R.id.week_MinhaTimesTV);
-        week_ArvitTimesTV = (TextView) findViewById(R.id.week_ArvitTimesTV);
-        saturday_kabalatShabatTimesTV = (TextView) findViewById(R.id.saturday_kabalatShabatTimesTV);
-        saturday_sharitTimesTV = (TextView) findViewById(R.id.saturday_sharitTimesTV);
-        saturday_MinhaTimesTV = (TextView) findViewById(R.id.saturday_MinhaTimesTV);
-        saturday_ArvitTimesTV = (TextView) findViewById(R.id.saturday_ArvitTimesTV);
+            minyanTitleTV = (TextView) findViewById(R.id.minyanTitleTV);
 
-        minyanTitleTV.setText(MainActivity.minyansVector.get(currentMinyanIndex).name);
+            week_sharitTimesTV = (TextView) findViewById(R.id.week_sharitTimesTV);
+            week_MinhaTimesTV = (TextView) findViewById(R.id.week_MinhaTimesTV);
+            week_ArvitTimesTV = (TextView) findViewById(R.id.week_ArvitTimesTV);
+            saturday_kabalatShabatTimesTV = (TextView) findViewById(R.id.saturday_kabalatShabatTimesTV);
+            saturday_sharitTimesTV = (TextView) findViewById(R.id.saturday_sharitTimesTV);
+            saturday_MinhaTimesTV = (TextView) findViewById(R.id.saturday_MinhaTimesTV);
+            saturday_ArvitTimesTV = (TextView) findViewById(R.id.saturday_ArvitTimesTV);
 
-        setText(week_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.shaharit.getTimes());
-        setText(week_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.minha.getTimes());
-        setText(week_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.arvit.getTimes());
+            minyanTitleTV.setText(MainActivity.minyansVector.get(currentMinyanIndex).name);
 
-        setText(saturday_kabalatShabatTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.kabalatShabat.getTimes());
-        setText(saturday_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
-        setText(saturday_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.minha.getTimes());
-        setText(saturday_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.arvit.getTimes());
+            setText(week_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.shaharit.getTimes());
+            setText(week_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.minha.getTimes());
+            setText(week_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).weekday.arvit.getTimes());
+
+            setText(saturday_kabalatShabatTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.kabalatShabat.getTimes());
+            setText(saturday_sharitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.shaharit.getTimes());
+            setText(saturday_MinhaTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.minha.getTimes());
+            setText(saturday_ArvitTimesTV, MainActivity.minyansVector.get(currentMinyanIndex).saturday.arvit.getTimes());
+        }
+        else
+        {
+            AlertDialog alertDialog = new AlertDialog.Builder(TfilaActivity.this).create();
+            alertDialog.setIcon(R.drawable.ic_info_black_24dp);
+            alertDialog.setTitle("בעיה בקבלת נתונים");
+            alertDialog.setMessage("שגיאה בקבלת נתונים, אנא ודא כי הינך מחובר לאינטרנט, ונסה שוב בבקשה");
+
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "טען מחדש",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent myIntent = new Intent(TfilaActivity.this, MainActivity.class);
+                            TfilaActivity.this.startActivity(myIntent);
+                        }
+                    });
+            alertDialog.show();
+        }
+
 
     }
 
@@ -144,36 +167,44 @@ public class TfilaActivity extends AppCompatActivity
 
     public void initializelRadioButtons()
     {
-        if(radioButtons[0]==null)               //this for first run
+        try
         {
-            for(int i=0; i<radioButtons.length; i++)
+            if(radioButtons[0] == null)               //this for first run
             {
-                radioButtons[i] = new RadioButton(this);
-                radioButtons[i].setClickable(false);
-                if(i==currentMinyanIndex)
+                for(int i=0; i<radioButtons.length; i++)
                 {
-                    radioButtons[i].setChecked(true);
+                    radioButtons[i] = new RadioButton(this);
+                    radioButtons[i].setClickable(false);
+                    if(i==currentMinyanIndex)
+                    {
+                        radioButtons[i].setChecked(true);
+                    }
+                    else
+                    {
+                        radioButtons[i].setChecked(false);
+                    }
+                    LinearLayoutForBtns.addView(radioButtons[i]);
                 }
-                else
-                {
-                    radioButtons[i].setChecked(false);
-                }
-                LinearLayoutForBtns.addView(radioButtons[i]);
             }
+            else                                   //just update the relevant radio button to turn on
+            {
+                for(int i=0; i<radioButtons.length; i++)
+                {
+                    if(i==currentMinyanIndex)
+                    {
+                        radioButtons[i].setChecked(true);
+                    }
+                    else
+                    {
+                        radioButtons[i].setChecked(false);
+                    }
+                }
+
+            }
+
         }
-        else                                   //just update the relevant radio button to turn on
+        catch (Exception e)
         {
-            for(int i=0; i<radioButtons.length; i++)
-            {
-                if(i==currentMinyanIndex)
-                {
-                    radioButtons[i].setChecked(true);
-                }
-                else
-                {
-                    radioButtons[i].setChecked(false);
-                }
-            }
 
         }
 
