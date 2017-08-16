@@ -6,156 +6,168 @@
     android:layout_height="match_parent"
     tools:context="org.livnoni.yehud.yakir.MainActivity">
 
-
-    <LinearLayout
-        android:id="@+id/mainLLinearLayout"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        android:weightSum="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1">
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/HebrewDateView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="תאריך עברי"
-            android:textColor="@color/gray"
-            android:gravity="center"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/welcomeView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ברוך הבא"
-            android:textColor="@color/navy"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/TfilaBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/buttonshape"
-            android:text="זמני תפילות"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/RavBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/buttonshape"
-            android:text="דבר הרב אהרון"
-            android:textSize="20dp"
-            android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/mainLLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0"
-            android:background="@drawable/customborder"
-            android:orientation="vertical">
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:weightSum="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintTop_creator="1">
 
             <TextView
-                android:id="@+id/closesetTV"
+                android:id="@+id/HebrewDateView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="מניינים קרובים:"
-                android:textColor="@color/navy"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:text="תאריך עברי"
+                android:textColor="@color/gray"
+                android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/closestMinyansTV"
+                android:id="@+id/welcomeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:text="ברוך הבא"
                 android:textColor="@color/navy"
                 android:textSize="20sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/shabatTimesLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0"
-            android:background="@drawable/customborder"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/shabatTimesTV"
+            <Button
+                android:id="@+id/TfilaBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text=""
-                android:textColor="@color/navy"
-                android:textSize="15sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/buttonshape"
+                android:text="זמני תפילות"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
-
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0"
-            android:background="@drawable/customborder"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/updateTV"
+            <Button
+                android:id="@+id/RavBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="הודעות ועדכונים:"
-                android:textColor="@color/navy"
-                android:textSize="20sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/buttonshape"
+                android:text="דבר הרב אהרון"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/updateMsgTV"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:scrollbars="vertical"
-                android:textColor="@color/navy"
-                android:textSize="20sp" />
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_weight="0"
+                android:background="@drawable/customborder"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/closesetTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="מניינים קרובים:"
+                    android:textColor="@color/navy"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/closestMinyansTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/navy"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/shabatTimesLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_weight="0"
+                android:background="@drawable/customborder"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/shabatTimesTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="@color/navy"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="0"
+                android:background="@drawable/customborder"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/updateTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="הודעות ועדכונים:"
+                    android:textColor="@color/navy"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/updateMsgTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/navy"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-
-    </LinearLayout>
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>
