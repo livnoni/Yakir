@@ -159,14 +159,27 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject jsonObj = new JSONObject(json);
 
                 Log.d("grabShabat",json.toString());
-
-                String shabatName = jsonObj.getJSONArray("items").getJSONObject(1).getString("hebrew");
-                Log.d("grabShabat",shabatName);
-                String enterShabat = jsonObj.getJSONArray("items").getJSONObject(0).getString("title").substring(17);
-                Log.d("grabShabat",enterShabat);
-                String exitShabat = jsonObj.getJSONArray("items").getJSONObject(2).getString("title").substring(19);
-                Log.d("grabShabat",exitShabat);
-
+                String shabatName = "",enterShabat = "",exitShabat = "";
+                for(int i =0; i<jsonObj.getJSONArray("items").length(); i++)
+                {
+                    String category = jsonObj.getJSONArray("items").getJSONObject(i).getString("category");
+                    Log.d("Arnon",i+"="+category);
+                    switch (category)
+                    {
+                        case "parashat":
+                            shabatName = jsonObj.getJSONArray("items").getJSONObject(3).getString("hebrew");
+                            Log.d("grabShabat",shabatName);
+                            break;
+                        case "candles":
+                            enterShabat = jsonObj.getJSONArray("items").getJSONObject(2).getString("title").substring(17);
+                            Log.d("grabShabat",enterShabat);
+                            break;
+                        case "havdalah":
+                            exitShabat = jsonObj.getJSONArray("items").getJSONObject(4).getString("title").substring(19);
+                            Log.d("grabShabat",exitShabat);
+                            break;
+                    }
+                }
                 StaticClass.ShabatInfo shabatInfo = new StaticClass.ShabatInfo(shabatName , enterShabat, exitShabat);
 
                 Log.d("grabShabat","FINISH------------------------------------------");
