@@ -167,15 +167,15 @@ public class MainActivity extends AppCompatActivity {
                     switch (category)
                     {
                         case "parashat":
-                            shabatName = jsonObj.getJSONArray("items").getJSONObject(3).getString("hebrew");
+                            shabatName = jsonObj.getJSONArray("items").getJSONObject(i).getString("hebrew");
                             Log.d("grabShabat",shabatName);
                             break;
                         case "candles":
-                            enterShabat = jsonObj.getJSONArray("items").getJSONObject(2).getString("title").substring(17);
+                            enterShabat = jsonObj.getJSONArray("items").getJSONObject(i).getString("title").substring(17);
                             Log.d("grabShabat",enterShabat);
                             break;
                         case "havdalah":
-                            exitShabat = jsonObj.getJSONArray("items").getJSONObject(4).getString("title").substring(19);
+                            exitShabat = jsonObj.getJSONArray("items").getJSONObject(i).getString("title").substring(19);
                             Log.d("grabShabat",exitShabat);
                             break;
                     }
