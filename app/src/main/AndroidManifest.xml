@@ -24,7 +24,8 @@
         <activity
             android:name=".TfilaActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".RavActivity"></activity>
+        <activity android:name=".RavActivity" />
+        <activity android:name=".ShiurimActivity"></activity>
     </application>
 
 </manifest>

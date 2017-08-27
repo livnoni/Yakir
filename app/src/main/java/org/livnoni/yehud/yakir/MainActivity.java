@@ -5,12 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +26,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +38,7 @@ import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button goToTfilaCtivity, RavBtn;
+    Button goToTfilaCtivity, RavBtn, ShiurimBtn;
     private ProgressDialog mProgressDialog;
     TextView welcomeView ,closestMinyansTV, updateMsgTV,HebrewDateTV,shabatTimesTV;
 
@@ -68,8 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
         RavBtn =(Button) findViewById(R.id.RavBtn);
         goToTfilaCtivity = (Button) findViewById(R.id.TfilaBtn);
+        ShiurimBtn = (Button) findViewById(R.id.ShiurimBtn);
         changeButtonBackground(goToTfilaCtivity,true);
         changeButtonBackground(RavBtn,true);
+        changeButtonBackground(ShiurimBtn,true);
 
         welcomeView = (TextView) findViewById(R.id.welcomeView);
         closestMinyansTV = (TextView) findViewById(R.id.closestMinyansTV);
@@ -105,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 v.startAnimation(animScale);
                 startActivity(new Intent(MainActivity.this, RavActivity.class));
+            }
+        });
+
+        ShiurimBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(animScale);
+                startActivity(new Intent(MainActivity.this, ShiurimActivity.class));
             }
         });
 
@@ -190,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }catch (Exception e){
-
+                Log.d("Exeption!", e.getMessage());
             }
             return null;
         }
@@ -203,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
             dataObject.parseData();
             changeButtonBackground(goToTfilaCtivity,false);
             changeButtonBackground(RavBtn,false);
+            changeButtonBackground(ShiurimBtn,false);
             showWelcomeText();
             showUpdateMsg();
             initialDate();
@@ -449,12 +457,31 @@ public class MainActivity extends AppCompatActivity {
         String enter = changeTimeFormat(StaticClass.ShabatInfo.getShabatEnter());
         String exit = changeTimeFormat(StaticClass.ShabatInfo.getShabatExit());
         String shabatName = StaticClass.ShabatInfo.getShabatName();
-        if( enter != null && exit != null && shabatName != null )
+//        if( enter != null && exit != null && shabatName != null )
+//        {
+//            shabatTimesTV.setText("פרשת השבוע: "+shabatName+"\n"+
+//                    "כניסת השבת: "+enter+"\n"+
+//                    "יציאת השבת:"+exit);
+//        }
+
+
+
+        if(shabatName != "" && shabatName != null)
         {
-            shabatTimesTV.setText("פרשת השבוע: "+shabatName+"\n"+
-                    "כניסת השבת: "+enter+"\n"+
-                    "יציאת השבת:"+exit);
+            shabatTimesTV.setText("פרשת השבוע: "+shabatName);
         }
+        if(enter != "" && enter != null)
+        {
+            shabatTimesTV.append("\n"+"כניסת השבת: "+enter);
+        }
+        if(exit != "" && exit != null)
+        {
+            shabatTimesTV.append("\n"+ "יציאת השבת:"+exit);
+        }
+
+
+
+
         else //for case we cant get valid data...
         {
             ((LinearLayout) findViewById(R.id.mainLLinearLayout)).removeView(((LinearLayout) findViewById(R.id.shabatTimesLayout)));

@@ -5,9 +5,9 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "org.livnoni.yehud.yakir"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 25
-        versionCode 16
+        versionCode 17
         versionName "2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

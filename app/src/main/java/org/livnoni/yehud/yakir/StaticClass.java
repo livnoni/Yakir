@@ -1,5 +1,7 @@
 package org.livnoni.yehud.yakir;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -190,4 +192,65 @@ public class StaticClass
             return exitShabatTime;
         }
     }
+
+    public static class Shuirs
+    {
+        Vector<Shiur> shiursVector;
+
+        public Shuirs(String [][] trtd)
+        {
+            shiursVector = new Vector<Shiur>(trtd[0].length);
+
+            for (int i =0; i<trtd.length; i++)
+            {
+                if(trtd[i].length == 6) //with details
+                {
+                    shiursVector.add(new Shiur(trtd[i][0],trtd[i][1],trtd[i][2],trtd[i][3],trtd[i][4],trtd[i][5]));
+                }
+                if(trtd[i].length == 5) ///withou details
+                {
+                    shiursVector.add(new Shiur(trtd[i][0],trtd[i][1],trtd[i][2],trtd[i][3],trtd[i][4]));
+                }
+            }
+        }
+
+        public String toString()
+        {
+            String s ="num of shiurim="+shiursVector.size()+" ";
+            for (int i=0; i<shiursVector.size(); i++)
+            {
+                s = s +"["+ shiursVector.get(i).toString()+"] , ";
+            }
+            return s;
+        }
+    }
+
+    public static class Shiur
+    {
+        String dayName, time, name , spokenBy, location ,details;
+
+        public Shiur(String dayName, String time,String name ,String spokenBy,String location ,String details)
+        {
+            this.dayName = dayName;
+            this.time = time;
+            this.name = name;
+            this.spokenBy = spokenBy;
+            this.location = location;
+            this.details = details;
+        }
+        public Shiur(String dayName, String time,String name ,String spokenBy,String location)
+        {
+            this.dayName = dayName;
+            this.time = time;
+            this.name = name;
+            this.spokenBy = spokenBy;
+            this.location = location;
+            this.details = null;
+        }
+        public String toString()
+        {
+            return "[ dayName:"+dayName+",time="+time+",name="+name+",spokenBy="+spokenBy+","+location+",details="+details+" ]";
+        }
+    }
+
 }

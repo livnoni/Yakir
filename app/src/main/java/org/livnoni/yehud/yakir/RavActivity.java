@@ -116,7 +116,6 @@ public class RavActivity extends AppCompatActivity {
     {
         onBackPressed();
         return super.onOptionsItemSelected(menuItem);
-
     }
 
     public void forceEnglishView()

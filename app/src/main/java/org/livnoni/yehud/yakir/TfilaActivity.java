@@ -30,6 +30,7 @@ public class TfilaActivity extends AppCompatActivity
     RadioButton[] radioButtons;
     LinearLayout LinearLayoutForBtns;
 
+
     //For swipe:
     float x1,x2;
     public static final int swipeSensitivity = 200;  //[0 is highest Sensitivity]
