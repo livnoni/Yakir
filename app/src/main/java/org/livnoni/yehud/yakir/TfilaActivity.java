@@ -133,6 +133,7 @@ public class TfilaActivity extends AppCompatActivity
         else
         {
             AlertDialog alertDialog = new AlertDialog.Builder(TfilaActivity.this).create();
+            alertDialog.setCanceledOnTouchOutside(false);
             alertDialog.setIcon(R.drawable.ic_info_black_24dp);
             alertDialog.setTitle("בעיה בקבלת נתונים");
             alertDialog.setMessage("שגיאה בקבלת נתונים, אנא ודא כי הינך מחובר לאינטרנט, ונסה שוב בבקשה");

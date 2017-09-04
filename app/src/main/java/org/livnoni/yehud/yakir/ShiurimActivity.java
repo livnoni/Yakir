@@ -1,14 +1,17 @@
 package org.livnoni.yehud.yakir;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -23,17 +26,23 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Vector;
 
 public class ShiurimActivity extends AppCompatActivity {
 
     String sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ95GwooKs7aU4WUIuMEKkx4bYkU8ilVzy1LJ8Kn318XL7yNnz7UjNf5tDIafTCBYinUoA70wcyhA4L/pubhtml";
     private ProgressDialog mProgressDialog;
     public StaticClass.Shuirs shuirs;
-    TextView dayNameTV;
+    TextView dayNameTV,textTV;
     int dayNumber;
-    final String [] dayName={"ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"};
+    String [] dayName;
     RadioButton[] radioButtons;
     LinearLayout LinearLayoutForBtns;
+    Button dayForwardBtn, dayBackBtn;
+
+
+    Vector<View> childsVector;
+
 
 
 
@@ -47,6 +56,11 @@ public class ShiurimActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shiurim);
 
+        setTitle("שיעורים");
+
+
+        dayName=new String []{getString(R.string.Sunday),getString(R.string.Monday),getString(R.string.Tuesday), getString(R.string.Wednesday), getString(R.string.Thursday), getString(R.string.Friday), getString(R.string.Saturday)};
+
         forceEnglishView();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -55,6 +69,10 @@ public class ShiurimActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         dayNameTV = (TextView) findViewById(R.id.dayNameTV);
+        textTV = (TextView) findViewById(R.id.textTV);
+        dayForwardBtn = (Button) findViewById(R.id.dayForwardBtn);
+        dayBackBtn = (Button) findViewById(R.id.dayBackBtn);
+
 
         radioButtons = new RadioButton[7];
         LinearLayoutForBtns = (LinearLayout) findViewById(R.id.LinearLayoutForBtns);
@@ -62,8 +80,7 @@ public class ShiurimActivity extends AppCompatActivity {
         updateDayNumber();
         Log.d("currentDayName=",dayName[dayNumber-1]+"");
         Log.d("dayNumber=",dayNumber+"");
-        initializelUI();
-        initializelRadioButtons();
+
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setIndeterminate(false);
@@ -76,6 +93,18 @@ public class ShiurimActivity extends AppCompatActivity {
 
 
         new grabData().execute();
+
+        LinearLayout layout = (LinearLayout)findViewById(R.id.shuirLinearLayoutTV);
+        layout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                swipe(event);
+                return true;
+            }
+        });
+
+
+
 
 
     }
@@ -125,6 +154,9 @@ public class ShiurimActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             mProgressDialog.dismiss();
 
+            initializelUI();
+            initializelRadioButtons();
+
         }
 
         @Override
@@ -142,7 +174,105 @@ public class ShiurimActivity extends AppCompatActivity {
 
     public void initializelUI()
     {
-        dayNameTV.setText("יום "+dayName[dayNumber-1]);
+        String currentDay = dayName[dayNumber-1];
+        int numOfShuirs = shuirs.getNumOfShiurs(currentDay);
+        dayNameTV.setText("יום "+currentDay);
+
+        LinearLayout layout = (LinearLayout)findViewById(R.id.shuirLinearLayoutTV);
+
+        //clean the latest dataL:
+        if(childsVector!= null && childsVector.size()>0)
+        {
+            for(int i=0; i<childsVector.size(); i++)
+            {
+                layout.removeView(childsVector.get(i));
+            }
+
+            childsVector.removeAllElements();
+        }
+
+        if(numOfShuirs > 0)
+        {
+            childsVector = new Vector<View>();
+            for(int i=0; i<numOfShuirs; i++)
+            {
+                View child = getLayoutInflater().inflate(R.layout.shuir_layout, null);
+                childsVector.add(child);
+                StaticClass.Shiur tempShuir = shuirs.getVectorOfShuirs(currentDay).get(i);
+
+                TextView shuirNameTV = (TextView) child.findViewById(R.id.shuirNameTV);
+                shuirNameTV.setText(tempShuir.getName());
+                TextView shuirTimeTV = (TextView) child.findViewById(R.id.shuirTimeTV);
+                shuirTimeTV.setText(tempShuir.getTime());
+                TextView shuirGuidedByTV = (TextView) child.findViewById(R.id.shuirGuidedByTV);
+                shuirGuidedByTV.setText(tempShuir.getSpokenBy());
+                TextView shuirLocationTV = (TextView) child.findViewById(R.id.shuirLocationTV);
+                shuirLocationTV.setText(tempShuir.getLocation());
+                TextView shuirDetailsTV = (TextView) child.findViewById(R.id.shuirDetailsTV);
+                if(tempShuir.getDetails() == null || tempShuir.getDetails() == "" || tempShuir.getDetails() == " ")
+                {
+                    shuirDetailsTV.setText("אין פרטים.");
+                    shuirDetailsTV.setTextColor(Color.RED);
+                }
+                else
+                {
+                    shuirDetailsTV.setText(tempShuir.getDetails());
+                    shuirDetailsTV.setTextColor(Color.GRAY);
+                }
+                layout.addView(child,i+1);
+            }
+            textTV.setVisibility(View.INVISIBLE);
+
+        }
+        else //no shuirs at this day
+        {
+
+            textTV.setVisibility(View.VISIBLE);
+            textTV.setText("אין שיעורים היום.");
+        }
+
+        //dayName[dayNumber-1] = current day
+
+        if(dayNumber-1 > 0)
+        {
+            dayForwardBtn.setText(dayName[dayNumber-2]);
+            dayForwardBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dayNumber--;
+                    initializelUI();
+                    initializelRadioButtons();
+                }
+            });
+            dayForwardBtn.setVisibility(View.VISIBLE);
+
+        }
+        else
+        {
+            dayForwardBtn.setText("");
+            dayForwardBtn.setVisibility(View.INVISIBLE);
+        }
+        if(dayNumber-1 < 6)
+        {
+            dayBackBtn.setText(dayName[dayNumber]);
+            dayBackBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dayNumber++;
+                    initializelUI();
+                    initializelRadioButtons();
+                }
+            });
+            dayBackBtn.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            dayBackBtn.setVisibility(View.INVISIBLE);
+            dayBackBtn.setText("");
+        }
+
+
+
     }
 
     public void initializelRadioButtons()
@@ -185,10 +315,11 @@ public class ShiurimActivity extends AppCompatActivity {
         }
         catch (Exception e)
         {
-
         }
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -219,11 +350,16 @@ public class ShiurimActivity extends AppCompatActivity {
 
 
 
-
-
     // onTouchEvent () method gets called when User performs any touch event on screen
     // Method to handle touch event like left to right swap and right to left swap
     public boolean onTouchEvent(MotionEvent touchevent)
+    {
+        super.onTouchEvent(touchevent);
+        swipe(touchevent);
+        return false;
+    }
+
+    public void swipe(MotionEvent touchevent)
     {
         switch (touchevent.getAction())
         {
@@ -247,9 +383,7 @@ public class ShiurimActivity extends AppCompatActivity {
                         dayNumber--;
                         initializelUI();
                         initializelRadioButtons();
-//                        initializelRadioButtons();
                     }
-                    Toast.makeText(this, "Left to Right Swap Performed", Toast.LENGTH_SHORT).show();
                 }
 
                 // if left to right sweep event on screen
@@ -261,14 +395,10 @@ public class ShiurimActivity extends AppCompatActivity {
                         initializelUI();
                         initializelRadioButtons();
                     }
-                    Toast.makeText(this, "Right to Left Swap Performed", Toast.LENGTH_SHORT).show();
                 }
-
-
                 break;
             }
         }
-        return false;
     }
 
 

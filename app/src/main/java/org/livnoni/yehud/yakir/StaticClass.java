@@ -223,6 +223,56 @@ public class StaticClass
             }
             return s;
         }
+        public String toString(String dayName)
+        {
+            String ans ="";
+            for(int i=0; i<shiursVector.size(); i++)
+            {
+                if(shiursVector.get(i).dayName.equals(dayName))
+                {
+                    ans = ans + shiursVector.get(i).toString()+"\n";
+                }
+            }
+            if(ans == "")
+            {
+                return null;
+            }
+            else
+            {
+                return ans;
+            }
+        }
+        public int getNumOfShiurs(String dayName)
+        {
+            int count =0;
+            for(int i=0; i<shiursVector.size(); i++)
+            {
+                if(shiursVector.get(i).dayName.equals(dayName))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        public  Vector<Shiur> getVectorOfShuirs(String dayName)
+        {
+            Vector<Shiur> tempVector = new Vector<Shiur>();
+            for(int i=0; i<shiursVector.size(); i++)
+            {
+                if(shiursVector.get(i).dayName.equals(dayName))
+                {
+                    tempVector.add(shiursVector.get(i));
+                }
+            }
+            if(tempVector.size()>0)
+            {
+                return tempVector;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 
     public static class Shiur
@@ -249,7 +299,63 @@ public class StaticClass
         }
         public String toString()
         {
-            return "[ dayName:"+dayName+",time="+time+",name="+name+",spokenBy="+spokenBy+","+location+",details="+details+" ]";
+            if(details == null || details =="" || details ==" ")
+            {
+                return "[ dayName:"+dayName+",time="+time+",name="+name+",spokenBy="+spokenBy+","+location+"]";
+            }
+            else
+            {
+                return "[ dayName:"+dayName+",time="+time+",name="+name+",spokenBy="+spokenBy+","+location+",details="+details+" ]";
+
+            }
+        }
+        public String getName()
+        {
+            if(name != null)
+            {
+                return name;
+            }
+            return null;
+        }
+        public String getDayName()
+        {
+            if(dayName != null)
+            {
+                return dayName;
+            }
+            return null;
+        }
+        public String getTime()
+        {
+            if(time != null)
+            {
+                return time;
+            }
+            return null;
+        }
+        public String getSpokenBy()
+        {
+            if(spokenBy != null)
+            {
+                return spokenBy;
+            }
+            return null;
+        }
+        public String getLocation()
+        {
+            if(location != null)
+            {
+                return location;
+            }
+            return null;
+        }
+        public String getDetails()
+        {
+            if(details != null || details == "" || details == " ")
+            {
+                return details;
+            }
+            return null;
         }
     }
 

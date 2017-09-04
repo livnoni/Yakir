@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">זמני תפילות</string>
     <string name="copyright">Version 2.1 Powered by Yehuda Livnoni ©</string>
+    <string name="Sunday">ראשון</string>
+    <string name="Monday">שני</string>
+    <string name="Tuesday">שלישי</string>
+    <string name="Wednesday">רביעי</string>
+    <string name="Thursday">חמישי</string>
+    <string name="Friday">שישי</string>
+    <string name="Saturday">שבת</string>
+
 </resources>
