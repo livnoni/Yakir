@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +103,19 @@ public class ShiurimActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
+//        ScrollView scrollView = (ScrollView) findViewById(R.id.shuirScrollViewTV);
+//        scrollView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                swipe(event);
+//                return true;
+//            }
+//        });
+
+
+
 
 
 
