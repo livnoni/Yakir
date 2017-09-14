@@ -352,10 +352,6 @@ public class MainActivity extends AppCompatActivity {
         {
             updateMsgTV.append(updateMsg);
             updateMsgTV.setMovementMethod(new ScrollingMovementMethod());
-//            updateMsgTV.setMaxLines(5);
-//            updateMsgTV.getLineCount();
-
-
         }
         else
         {
@@ -457,14 +453,6 @@ public class MainActivity extends AppCompatActivity {
         String enter = changeTimeFormat(StaticClass.ShabatInfo.getShabatEnter());
         String exit = changeTimeFormat(StaticClass.ShabatInfo.getShabatExit());
         String shabatName = StaticClass.ShabatInfo.getShabatName();
-//        if( enter != null && exit != null && shabatName != null )
-//        {
-//            shabatTimesTV.setText("פרשת השבוע: "+shabatName+"\n"+
-//                    "כניסת השבת: "+enter+"\n"+
-//                    "יציאת השבת:"+exit);
-//        }
-
-
 
         if(shabatName != "" && shabatName != null)
         {
@@ -478,7 +466,6 @@ public class MainActivity extends AppCompatActivity {
         {
             shabatTimesTV.append("\n"+ "יציאת השבת:"+exit);
         }
-
 
 
 
