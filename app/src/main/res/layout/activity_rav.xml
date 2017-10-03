@@ -47,14 +47,25 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/ravMsgTV"
-                android:layout_width="match_parent"
+
+            <ScrollView
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:scrollbars="vertical"
-                android:textColor="@color/navy"
-                android:textSize="20sp" />
+                android:fillViewport="true"
+                >
+
+                <TextView
+                    android:id="@+id/ravMsgTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/navy"
+                    android:textSize="20sp" />
+
+
+            </ScrollView>
+
+
 
 
         </LinearLayout>

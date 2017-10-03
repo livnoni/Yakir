@@ -102,7 +102,7 @@ public class RavActivity extends AppCompatActivity {
         if(updateMsg.length()>1)
         {
             ravMsgTV.append(updateMsg);
-            ravMsgTV.setMovementMethod(new ScrollingMovementMethod());
+//            ravMsgTV.setMovementMethod(new ScrollingMovementMethod());
         }
         else
         {

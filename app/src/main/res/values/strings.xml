@@ -9,4 +9,36 @@
     <string name="Friday">שישי</string>
     <string name="Saturday">שבת</string>
 
+    <string name="goodMorning">בוקר טוב</string>
+    <string name="goodAfternoon">צהריים טובים</string>
+    <string name="goodEvenning">ערב טוב</string>
+    <string name="goodNight">לילה טוב</string>
+
+    <string name="noMinyans">אין מניינים בזמן הקרוב</string>
+    <string name="noNewMessages">אין הודעות חדשות</string>
+
+
+    <string name="about">אודות</string>
+    <string name="sendFeedback">שלח פידבק</string>
+    <string name="shareFriends">שתף חברים</string>
+
+    <string name="appName">אפליקציית יקיר</string>
+
+    <string name="presentInfoAboutApp">מציגה מידע עדכני אודות זמני תפילות</string>
+    <string name="CorrectnessInfoSubjectGabbaiUpdates">נכונות המידע בכפוף לעדכוני הגבאים</string>
+
+    <string name="myMail">yehuda.livnoni@gmail.com</string>
+    <string name="feedbackToApp">פידבק לאפליקציית יקיר</string>
+
+    <string name="appUrl">https://play.google.com/store/apps/details?id=org.livnoni.yehud.yakir</string>
+    <string name="noExcuses">ניגמרו התירוצים...אפליקציית זמני תפילות יקיר!</string>
+    <string name="fullAppName">אפליקציית זמני תפילות יקיר</string>
+
+    <string name="shabatEnter">כניסת השבת</string>
+    <string name="shabatExit">ציאת השבת</string>
+    <string name="parasha">פרשת השבוע</string>
+
+
+
+
 </resources>

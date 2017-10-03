@@ -287,13 +287,13 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Calendar=",hourOfDay+"");
 
         if(hourOfDay >= 4 && hourOfDay < 12){
-            welcomeView.setText("בוקר טוב");
+            welcomeView.setText(getResources().getString(R.string.goodMorning));
         }else if(hourOfDay >= 12 && hourOfDay < 17){
-            welcomeView.setText("צהריים טובים");
+            welcomeView.setText(getResources().getString(R.string.goodAfternoon));
         }else if(hourOfDay >= 17 && hourOfDay < 21){
-            welcomeView.setText("ערב טוב");
+            welcomeView.setText(getResources().getString(R.string.goodEvenning));
         }else if( (hourOfDay >= 21 && hourOfDay < 24) || (hourOfDay >= 0 && hourOfDay <= 4) ){
-            welcomeView.setText("לילה טוב");
+            welcomeView.setText(getResources().getString(R.string.goodNight));
         }
     }
 
@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
         if(closestMinyansTV.getText() == "")
         {
             closestMinyansTV.setTextColor(Color.RED);
-            closestMinyansTV.append("אין מניינים בזמן הקרוב");
+            closestMinyansTV.append(getResources().getString(R.string.noMinyans));
         }
     }
 
@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             updateMsgTV.setTextColor(Color.RED);
-            updateMsgTV.append("אין הודעות חדשות");
+            updateMsgTV.append(getResources().getString(R.string.noNewMessages));
         }
     }
 
@@ -365,9 +365,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        menu.add(Menu.NONE,0,Menu.NONE,"אודות");
-        menu.add(Menu.NONE,1,Menu.NONE,"שלח פידבק");
-        menu.add(Menu.NONE,2,Menu.NONE,"שתף חברים");
+        menu.add(Menu.NONE,0,Menu.NONE,getResources().getString(R.string.about));
+        menu.add(Menu.NONE,1,Menu.NONE,getResources().getString(R.string.sendFeedback));
+        menu.add(Menu.NONE,2,Menu.NONE,getResources().getString(R.string.shareFriends));
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -378,8 +378,11 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setIcon(R.drawable.ic_info_black_24dp);
-                alertDialog.setTitle("אודות");
-                alertDialog.setMessage("אפליקציית יקיר"+"\n"+"מציגה מידע עדכני אודות זמני תפילות"+"\n"+"נכונות המידע בכפוף לעדכוני הגבאים"+"\n\n\n"+getString(R.string.copyright));
+                alertDialog.setTitle(getResources().getString(R.string.about));
+                alertDialog.setMessage(getResources().getString(R.string.app_name)+"\n"
+                        +getString(R.string.presentInfoAboutApp)+"\n"
+                        +getString(R.string.CorrectnessInfoSubjectGabbaiUpdates)+"\n\n\n"
+                        +getString(R.string.copyright));
 
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
@@ -392,16 +395,16 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 Intent Email = new Intent(Intent.ACTION_SEND);
                 Email.setType("text/email");
-                Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "yehuda.livnoni@gmail.com" });
-                Email.putExtra(Intent.EXTRA_SUBJECT, "פידבק לאפליקציית יקיר");
+                Email.putExtra(Intent.EXTRA_EMAIL, new String[] { (getResources().getString(R.string.myMail)) });
+                Email.putExtra(Intent.EXTRA_SUBJECT, (getResources().getString(R.string.feedbackToApp)));
                 Email.putExtra(Intent.EXTRA_TEXT, "היי, רציתי להגיד ש..." + "");
                 startActivity(Intent.createChooser(Email, "Send Feedback:"));
                 break;
             case 2:
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                String shareBody = "ניגמרו התירוצים...אפליקציית זמני תפילות יקיר!"+"\t"+"https://play.google.com/store/apps/details?id=org.livnoni.yehud.yakir";
-                String shareSub ="אפליקציית זמני תפילות יקיר";
+                String shareBody = getResources().getString(R.string.noExcuses)+"\t"+getString(R.string.appUrl);
+                String shareSub =getResources().getString(R.string.fullAppName);
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(shareIntent , "SHARE USING"));
@@ -456,15 +459,15 @@ public class MainActivity extends AppCompatActivity {
 
         if(shabatName != "" && shabatName != null)
         {
-            shabatTimesTV.setText("פרשת השבוע: "+shabatName);
+            shabatTimesTV.setText(getResources().getString(R.string.parasha)+":  "+shabatName+"\n");
         }
         if(enter != "" && enter != null)
         {
-            shabatTimesTV.append("\n"+"כניסת השבת: "+enter);
+            shabatTimesTV.append(getResources().getString(R.string.shabatEnter)+":  "+enter+"\n");
         }
         if(exit != "" && exit != null)
         {
-            shabatTimesTV.append("\n"+ "יציאת השבת:"+exit);
+            shabatTimesTV.append(getResources().getString(R.string.shabatExit)+":  "+exit);
         }
 
 
