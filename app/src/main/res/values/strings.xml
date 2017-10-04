@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">זמני תפילות</string>
-    <string name="copyright">Version 2.2 Powered by Yehuda Livnoni ©</string>
+    <string name="copyright">Version 2.4 Powered by Yehuda Livnoni ©</string>
     <string name="Sunday">ראשון</string>
     <string name="Monday">שני</string>
     <string name="Tuesday">שלישי</string>
@@ -35,7 +35,7 @@
     <string name="fullAppName">אפליקציית זמני תפילות יקיר</string>
 
     <string name="shabatEnter">כניסת השבת</string>
-    <string name="shabatExit">ציאת השבת</string>
+    <string name="shabatExit">יציאת השבת</string>
     <string name="parasha">פרשת השבוע</string>
 
 
