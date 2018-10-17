@@ -153,8 +153,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("grabDocData","FINISH------------------------------------------");
 
 
-                doc = Jsoup.parse(new URL(dateUrl).openStream(), "UTF-8", "", Parser.xmlParser());
-                hebrewDate = doc.select("title").last().text();
+                Document dateDoc = Jsoup.connect(dateUrl).get();
+                Document dateXML = Jsoup.parse(dateDoc.toString(), "", Parser.xmlParser());
+
+                hebrewDate = dateXML.select("title").last().text();
                 Log.d("grabDateUrl",hebrewDate);
                 Log.d("grabDateUrl","FINISH------------------------------------------");
 
